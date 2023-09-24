@@ -2,7 +2,10 @@ import { books } from "../../helpers/books";
 
 class ListBooksService {
   async execute() {
-    return books;
+    const bookNames = books.map((book) => book.nome);
+    console.log(bookNames);
+
+    return bookNames;
   }
 }
 

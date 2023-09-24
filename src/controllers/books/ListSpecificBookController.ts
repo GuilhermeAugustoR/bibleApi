@@ -12,7 +12,6 @@ class ListSpecificBookController {
     if (!specificBook) {
       return res.status(404).json({ message: "Livro não encontrado!" });
     }
-    console.log(specificBook);
 
     return res.json(specificBook);
   }
