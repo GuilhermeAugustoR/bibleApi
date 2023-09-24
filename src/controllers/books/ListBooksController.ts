@@ -7,7 +7,7 @@ class ListBooksController {
 
     const listBooks = await listBooksService.execute();
 
-    return res.json({listBooks});
+    return res.json(listBooks);
   }
 }
 
