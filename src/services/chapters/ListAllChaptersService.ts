@@ -7,7 +7,7 @@ interface IListAllChaptersService {
 class ListAllChaptersService {
   async execute({ name }: IListAllChaptersService) {
     if (!name) {
-      throw new Error("livro não encontrado!");
+      throw new Error("Livro não encontrado!");
     }
 
     const nameBook = books.find((find) => find.nome === name);

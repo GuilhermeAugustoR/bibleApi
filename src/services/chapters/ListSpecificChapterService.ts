@@ -2,7 +2,7 @@ import { books } from "../../helpers/books";
 
 interface IListSpecificChapterService {
   name: string;
-  chapter: number;
+  chapter: string;
 }
 
 class ListSpecificChapterService {
@@ -18,7 +18,7 @@ class ListSpecificChapterService {
     }
 
     // Adicione 1 ao valor de `chapter` para obter o capítulo correto
-    const specificChapter = nameBook.capitulos[chapter - 1];
+    const specificChapter = nameBook.capitulos[parseInt(chapter) - 1];
 
     return specificChapter;
   }

@@ -3,7 +3,7 @@ import { ListAllChaptersService } from "../../services/chapters/ListAllChaptersS
 
 class ListAllChaptersControllers {
   async handle(req: Request, res: Response) {
-    const { name } = req.body;
+    const name = req.params.name;
 
     const listAllChaptersService = new ListAllChaptersService();
 

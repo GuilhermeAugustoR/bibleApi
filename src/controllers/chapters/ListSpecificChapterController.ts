@@ -3,7 +3,8 @@ import { ListSpecificChapterService } from "../../services/chapters/ListSpecific
 
 class ListSpecificChapterController {
   async handle(req: Request, res: Response) {
-    const { name, chapter } = req.body;
+    const name = req.params.name;
+    const chapter = req.params.chapter;
     const listSpecificChapterService = new ListSpecificChapterService();
 
     const specificChapter = await listSpecificChapterService.execute({

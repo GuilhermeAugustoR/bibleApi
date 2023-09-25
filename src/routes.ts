@@ -8,7 +8,7 @@ const router = Router();
 
 router.get("/books", new ListBooksController().handle);
 router.get("/specificBook", new ListSpecificBookController().handle);
-router.get("/chapters", new ListAllChaptersControllers().handle);
-router.get("/specificChapter", new ListSpecificChapterController().handle)
+router.get("/chapters/:name", new ListAllChaptersControllers().handle);
+router.get("/specificChapter/:name/:chapter", new ListSpecificChapterController().handle)
 
 export { router };
