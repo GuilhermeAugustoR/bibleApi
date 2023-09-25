@@ -3,8 +3,6 @@ import { ListAllChaptersService } from "../../services/chapters/ListAllChaptersS
 
 class ListAllChaptersControllers {
   async handle(req: Request, res: Response) {
-    res.header("Access-Control-Allow-Origin", "*");
-    
     const { name } = req.body;
 
     const listAllChaptersService = new ListAllChaptersService();
