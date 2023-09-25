@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(router);
 
 var corsOptions = {
-  origin: "https://bible-api-nv.vercel.app",
+  origin: "http://127.0.0.1:5173/",
 };
 app.use(cors(corsOptions));
 
