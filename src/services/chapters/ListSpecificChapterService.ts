@@ -1,26 +1,26 @@
-import { books } from "../../helpers/books";
+import { loadBible } from "../../helpers/bibleLoader";
 
 interface IListSpecificChapterService {
   name: string;
   chapter: string;
+  version: string;
 }
 
 class ListSpecificChapterService {
-  async execute({ name, chapter }: IListSpecificChapterService) {
-    if (!name) {
-      throw new Error("livro não encontrado!");
+  async execute({ name, chapter, version }: IListSpecificChapterService) {
+    const books = loadBible(version);
+
+    const book = books.find(
+      (find: any) => find.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (!book) {
+      throw new Error("Livro não encontrado!");
     }
 
-    const nameBook = books.find((find) => find.name === name);
+    const chapterIndex = parseInt(chapter) - 1;
 
-    if (!nameBook) {
-      throw new Error("Nenhum livro encontrado!");
-    }
-
-    // Adicione 1 ao valor de `chapter` para obter o capítulo correto
-    const specificChapter = nameBook.chapters[parseInt(chapter) - 1];
-
-    return specificChapter;
+    return book.chapters[chapterIndex];
   }
 }
 

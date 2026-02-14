@@ -1,16 +1,17 @@
-import { books } from "../../helpers/books";
+import { loadBible } from "../../helpers/bibleLoader";
 
 interface IListSpecificBookSerice {
   name: string;
+  version: string;
 }
 
 class ListSpecificBookService {
-  async execute({ name }: IListSpecificBookSerice) {
-    if (!name) {
-      throw new Error("livro não encontrado!");
-    }
-    
-    const book = books.find((find) => find.name === name);
+  async execute({ name, version }: IListSpecificBookSerice) {
+    const books = loadBible(version);
+
+    const book = books.find(
+      (find: any) => find.name.toLowerCase() === name.toLowerCase(),
+    );
 
     return book;
   }

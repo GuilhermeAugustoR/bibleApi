@@ -1,28 +1,23 @@
-import { books } from "../../helpers/books";
+import { loadBible } from "../../helpers/bibleLoader";
 
 interface IListAllChaptersService {
   name: string;
+  version: string;
 }
 
 class ListAllChaptersService {
-  async execute({ name }: IListAllChaptersService) {
-    if (!name) {
+  async execute({ name, version }: IListAllChaptersService) {
+    const books = loadBible(version);
+
+    const book = books.find(
+      (find: any) => find.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (!book) {
       throw new Error("Livro não encontrado!");
     }
 
-    const nameBook = books.find((find) => find.name === name);
-
-    if (!nameBook) {
-      throw new Error("Nenhum livro encontrado!");
-    }
-
-    const chapters = nameBook?.chapters.map((_, index) => index + 1);
-
-    if (!chapters) {
-      throw new Error("Nenhum capítulo encontrado!");
-    }
-
-    return chapters;
+    return book.chapters.map((_: any, index: number) => index + 1);
   }
 }
 

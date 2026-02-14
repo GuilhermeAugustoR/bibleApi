@@ -11,5 +11,10 @@
             "src": "(.*)",
             "dest": "src/server.ts"
         }
-    ]
+    ],
+    "functions": {
+        "api/**/*.ts": {
+            "memory": 1024
+        }
+    }
 }

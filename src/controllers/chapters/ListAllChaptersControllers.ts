@@ -3,17 +3,21 @@ import { ListAllChaptersService } from "../../services/chapters/ListAllChaptersS
 
 class ListAllChaptersControllers {
   async handle(req: Request, res: Response) {
+    const { version } = req.query;
     const name = req.params.name;
 
-    const listAllChaptersService = new ListAllChaptersService();
+    const service = new ListAllChaptersService();
 
-    const listChapters = await listAllChaptersService.execute({ name });
+    try {
+      const chapters = await service.execute({
+        name,
+        version: String(version || "ACF"),
+      });
 
-    if (!listChapters) {
-      return res.status(404).json({ message: "Nenhum capítulo encontrado!" });
+      return res.json(chapters);
+    } catch (error: any) {
+      return res.status(400).json({ message: error.message });
     }
-
-    return res.json(listChapters);
   }
 }
 

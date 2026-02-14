@@ -2,12 +2,20 @@ import { Request, Response } from "express";
 import { ListBooksService } from "../../services/books/ListBooksService";
 
 class ListBooksController {
-  async handle(req:Request, res: Response) {
-    const listBooksService = new ListBooksService();
+  async handle(req: Request, res: Response) {
+    const { version } = req.query;
 
-    const listBooks = await listBooksService.execute();
+    const service = new ListBooksService();
 
-    return res.json(listBooks);
+    try {
+      const books = await service.execute({
+        version: String(version || "ACF"),
+      });
+
+      return res.json(books);
+    } catch (error: any) {
+      return res.status(400).json({ message: error.message });
+    }
   }
 }
 

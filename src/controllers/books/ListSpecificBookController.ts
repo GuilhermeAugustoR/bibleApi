@@ -3,17 +3,25 @@ import { ListSpecificBookService } from "../../services/books/ListSpecificBookSe
 
 class ListSpecificBookController {
   async handle(req: Request, res: Response) {
-    const { name } = req.body;
+    const { version } = req.query;
+    const name = req.params.name;
 
-    const listSpecificBook = new ListSpecificBookService();
+    const service = new ListSpecificBookService();
 
-    const specificBook = await listSpecificBook.execute({ name });
+    try {
+      const book = await service.execute({
+        name,
+        version: String(version || "ACF"),
+      });
 
-    if (!specificBook) {
-      return res.status(404).json({ message: "Livro não encontrado!" });
+      if (!book) {
+        return res.status(404).json({ message: "Livro não encontrado!" });
+      }
+
+      return res.json(book);
+    } catch (error: any) {
+      return res.status(400).json({ message: error.message });
     }
-
-    return res.json(specificBook);
   }
 }
 

@@ -1,10 +1,14 @@
-import { books } from "../../helpers/books";
+import { loadBible } from "../../helpers/bibleLoader";
+
+interface IListBooksService {
+  version: string;
+}
 
 class ListBooksService {
-  async execute() {
-    const bookNames = books.map((book) => book.name);
+  async execute({ version }: IListBooksService) {
+    const books = loadBible(version);
 
-    return bookNames;
+    return books.map((book: any) => book.name);
   }
 }
 
