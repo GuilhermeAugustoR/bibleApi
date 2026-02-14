@@ -8,7 +8,7 @@ class ListBooksService {
   async execute({ version }: IListBooksService) {
     const books = loadBible(version);
 
-    return books.map((book: any) => book.name);
+    return books.map((book: any) => book);
   }
 }
 

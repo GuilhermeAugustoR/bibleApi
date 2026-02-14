@@ -1,18 +1,7 @@
-import express from "express";
-import { router } from "./routes";
-import cors from "cors";
+import app from "./app";
 
-const app = express();
+const PORT = process.env.PORT || 3333;
 
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  }),
-);
-
-app.use(express.json());
-app.use(router);
-
-export default app;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+});
