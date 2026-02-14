@@ -10,7 +10,7 @@ class ListSpecificBookService {
       throw new Error("livro não encontrado!");
     }
     
-    const book = books.find((find) => find.nome === name);
+    const book = books.find((find) => find.name === name);
 
     return book;
   }

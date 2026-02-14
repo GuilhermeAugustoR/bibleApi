@@ -10,13 +10,13 @@ class ListAllChaptersService {
       throw new Error("Livro não encontrado!");
     }
 
-    const nameBook = books.find((find) => find.nome === name);
+    const nameBook = books.find((find) => find.name === name);
 
     if (!nameBook) {
       throw new Error("Nenhum livro encontrado!");
     }
 
-    const chapters = nameBook?.capitulos.map((_, index) => index + 1);
+    const chapters = nameBook?.chapters.map((_, index) => index + 1);
 
     if (!chapters) {
       throw new Error("Nenhum capítulo encontrado!");
